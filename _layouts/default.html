@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Halaman Saya</title>
+  <title>My Github io</title>
   <link href="https://avatars.githubusercontent.com/u/84800435?s=400&u=6d0759834cd3ae91619894be1bd6e8f3e6154dae&v=4" rel="icon">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    .light-theme {
+      background-color: #ffffff;
+      color: #000000;
+    }
+    .dark-theme {
+      background-color: #000000;
+      color: #ffffff;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px;
+    }
+  </style>
 </head>
-<body>
-  <h1>Selamat datang di halaman saya!</h1>
-  <p>Ini adalah contoh halaman HTML sederhana.</p>
+<body class="light-theme">
+
+  <h1>Welcome To My Website!</h1>
+  <p>Pilih tema latar belakang:</p>
+
+  <button id="lightThemeButton">Tema Terang</button>
+  <button id="darkThemeButton">Tema Gelap</button>
+
+  <script>
+    const lightThemeButton = document.getElementById("lightThemeButton");
+    const darkThemeButton = document.getElementById("darkThemeButton");
+
+    lightThemeButton.addEventListener("click", function () {
+      document.body.classList.remove("dark-theme");
+      document.body.classList.add("light-theme");
+    });
+
+    darkThemeButton.addEventListener("click", function () {
+      document.body.classList.remove("light-theme");
+      document.body.classList.add("dark-theme");
+    });
+  </script>
 </body>
-</html>
+  </html>

@@ -59,22 +59,22 @@ body {
   color: #ffcc00;
 }
 
-/* Most Used Languages */
-.github-languages {
-  margin-top: 80px; /* Geser lebih jauh ke bawah */
+/* GitHub Stats */
+.github-stats {
+  margin-top: 30px;
 }
 
-.github-languages img {
-  width: 60%; /* Ukuran lebih kecil */
-  max-width: 300px; /* Batas maksimum 300px */
-  margin: 20px auto; /* Jarak antara elemen */
+.github-stats img {
+  width: 80%;
+  max-width: 400px;
+  margin: 10px 0;
   border-radius: 10px;
   border: 2px solid #ffffff;
   transition: transform 0.3s ease-in-out;
 }
 
-.github-languages img:hover {
-  transform: scale(1.05); /* Efek hover */
+.github-stats img:hover {
+  transform: scale(1.05);
 }
 
 /* Animasi */

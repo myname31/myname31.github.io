@@ -77,17 +77,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Pemutar Musik */
-.music-player {
-  margin-top: 30px;
-}
-
-#background-music {
-  width: 300px;
-  border: 2px solid #ffffff;
-  border-radius: 10px;
-  background-color: #001f3f;
-}
 
 /* Footer */
 .footer {
@@ -110,7 +99,28 @@ body {
   margin-bottom: 50px; /* Beri ruang untuk footer */
 }
 
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #001f3f; /* Warna biru tua */
+  color: white;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.2em;
+}
 
+.navbar-left,
+.navbar-right {
+  font-size: 1.5em;
+}
+
+.navbar-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 
 /* Animasi */
 @keyframes fadeIn {

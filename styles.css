@@ -77,6 +77,41 @@ body {
   transform: scale(1.05);
 }
 
+/* Pemutar Musik */
+.music-player {
+  margin-top: 30px;
+}
+
+#background-music {
+  width: 300px;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  background-color: #001f3f;
+}
+
+/* Footer */
+.footer {
+  background-color: #001f3f; /* Samakan warna dengan background halaman */
+  color: rgba(255, 255, 255, 0.8); /* Menurunkan opacity teks */
+  text-align: center;
+  padding: 15px 0;
+  font-size: 0.9em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-logo {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle; /* Menyelaraskan logo dengan teks */
+  margin-left: 5px; /* Jarak kecil antara teks dan logo */
+}
+
+.container {
+  margin-bottom: 50px; /* Beri ruang untuk footer */
+}
+
+
+
 /* Animasi */
 @keyframes fadeIn {
   from {

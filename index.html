@@ -1,51 +1,66 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portofolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <!-- Navbar -->
-  <div class="navbar">
-    <div class="navbar-left">
-      <i class="fas fa-bars"></i>
-    </div>
-    <div class="navbar-title">Dashboard</div>
-    <div class="navbar-right">
-      <i class="fas fa-sun"></i>
-    </div>
-  </div>
-
-  <!-- Kontainer Utama -->
   <div class="container">
-    <div class="profile">
-      <img src="https://avatars.githubusercontent.com/u/84800435?v=4" alt="Foto Profil" class="profile-image">
-      <h1 class="name">ZanSky</h1>
-      <p class="description">Learning | Programming</p>
-      <div class="socials">
-        <a href="https://www.instagram.com/albuchori__?igsh=MTBsc3F6N2sydnN2MQ==" target="_blank" class="social-link">
-          <i class="fab fa-instagram"></i> Instagram
-        </a>
-        <a href="https://github.com/myname31" target="_blank" class="social-link">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-      </div>
+    <header>
+      <img src="https://placehold.co/150x150" alt="Profile Picture" class="profile-img" />
+      <h1>Zansky</h1>
+      <p class="subtitle">Frontend Developer & JavaScript Learner</p>
+    </header>
 
-      <!-- GitHub Statistic -->
-      <div class="github-stats">
-        <img src="https://github-readme-stats.vercel.app/api?username=myname31&show_icons=true&theme=dark" alt="GitHub Stats">
-        <img src="https://github-readme-streak-stats.herokuapp.com/?user=myname31&theme=dark" alt="GitHub Streak">
-        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=myname31&layout=compact&theme=dark" alt="Most Used Languages">
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Hello! I'm a beginner JavaScript developer who is passionate about learning and building things on the web. 
+        I'm currently focused on mastering the fundamentals of JavaScript and web development.
+      </p>
+      <p>
+        This portfolio is built with just HTML, CSS, and JavaScript to demonstrate my current skills and learning journey.
+      </p>
+    </section>
+
+    <section id="github-stats">
+      <h2>GitHub Statistics</h2>
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-number" id="repo-count">0</div>
+          <div class="stat-label">Public Repositories</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="followers">0</div>
+          <div class="stat-label">Followers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="following">0</div>
+          <div class="stat-label">Following</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stars">0</div>
+          <div class="stat-label">Total Stars</div>
+        </div>
       </div>
-    </div>
+      <a href="https://github.com/myname31" target="_blank" class="github-link">View my GitHub profile</a>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <p>JavaScript (Learning)</p>
+      <p>HTML & CSS</p>
+      <p>Web Development Fundamentals</p>
+      <p>Problem Solving</p>
+    </section>
+
+    <footer>
+      <p>© 2023 Your Name. Built with HTML, CSS, and JavaScript.</p>
+    </footer>
   </div>
 
-  <!-- Footer -->
-  <div class="footer">
-    <p>© Dibuat Oleh <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/2048px-ChatGPT_logo.svg.png" alt="ChatGPT Logo" class="footer-logo"> ChatGPT</p>
-  </div>
+  <script src="script.js"></script>
 </body>
 </html>

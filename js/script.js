@@ -4,7 +4,7 @@ const CONFIG = {
   // Isi URL yang ingin ditampilkan. Biarkan "" jika tidak ingin menampilkannya.
   socials: {
     github: "https://github.com/myname31",
-    instagram: "",
+    instagram: "https://www.instagram.com/albuchori__",
     tiktok: "",
     youtube: "",
     facebook: "",

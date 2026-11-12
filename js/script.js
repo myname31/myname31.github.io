@@ -10,7 +10,7 @@ const CONFIG = {
     facebook: "",
     x: "",
     linkedin: "",
-    telegram: "",
+    telegram: "https://t.me/MeUsep",
     discord: "",
     threads: "",
     whatsapp: "",

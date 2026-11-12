@@ -1,244 +1,177 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zansky | Portfolio</title>
-    <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Tailwind CSS v4 CDN for ultra-fast styling -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- call css -->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101114">
+  <meta name="description" content="ZanSky — developer, creator, and digital explorer.">
+  <title>ZanSky® — AFTERDARK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="antialiased min-h-screen pb-12">
-
-    <!-- BACKGROUND MUSIC CONTAINER -->
-    <!-- CONFIG: Ganti URL src audio dengan file musik instrumen pilihan Anda jika diinginkan -->
-    <audio id="bg-music" loop src="assets/music.mp3"></audio>
-
-    <!-- PRELOADER -->
-    <div id="site-loader">
-        <div class="spinner mb-4"></div>
-        <p class="text-xs tracking-widest uppercase font-semibold text-slate-400">Loading Ecosystem...</p>
+<body>
+  <div class="boot" id="boot" aria-label="Loading">
+    <div class="boot-inner">
+      <div class="boot-mark">Z<span>/</span>S</div>
+      <p>INITIALIZING AFTERDARK<span class="dots">...</span></p>
+      <div class="boot-track"><i></i></div>
+      <small id="boot-status">LOADING DIGITAL SPACE</small>
     </div>
+  </div>
 
-    <!-- FLOATING BACKGROUND PARTICLES -->
-    <div class="particle-container" id="particles"></div>
+  <canvas id="pixel-rain" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
 
-    <!-- FIXED TOP/NAVBAR UTILITIES -->
-    <header class="w-full max-w-5xl mx-auto px-4 pt-6 flex justify-between items-center z-50 sticky top-0 backdrop-blur-sm bg-slate-950/10 py-3">
-        <!-- Live Clock & Status Indicator -->
-        <div class="glass-card px-4 py-1.5 rounded-full text-xs font-mono flex items-center gap-3">
-            <span class="flex h-2 w-2 relative">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span id="digital-clock">00:00:00</span> <span class="text-slate-500">GMT+7</span>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="ZanSky home">ZAN<span>/</span>SKY<sup>®</sup></a>
+    <div class="top-meta"><span class="live-dot"></span><span id="system-status">SYSTEM ONLINE</span><span class="meta-divider">/</span><time id="clock">00:00:00</time></div>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <aside class="side-rail">
+    <span class="rail-label">NAVIGATION</span>
+    <nav id="side-nav">
+      <a href="#home" class="active"><b>00</b><span>HOME</span></a>
+      <a href="#about"><b>01</b><span>IDENTITY</span></a>
+      <a href="#work"><b>02</b><span>PROJECTS</span></a>
+      <a href="#stack"><b>03</b><span>ARSENAL</span></a>
+      <a href="#github"><b>04</b><span>ACTIVITY</span></a>
+      <a href="#journey"><b>05</b><span>JOURNEY</span></a>
+      <a href="#contact"><b>06</b><span>CONTACT</span></a>
+    </nav>
+    <div class="rail-bottom"><span>SCROLL TO EXPLORE</span><span class="rail-line"></span></div>
+  </aside>
+
+  <main>
+    <section class="hero section" id="home" data-section="00">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow reveal"><span class="eyebrow-square"></span> INDEPENDENT DIGITAL SPACE <span class="eyebrow-code">[ID—001]</span></div>
+          <p class="hero-kicker reveal">WELCOME TO THE OTHER SIDE.</p>
+          <h1 class="hero-title reveal" data-text="ZANSKY">ZANSKY<span class="title-mark">®</span></h1>
+          <div class="hero-bottom reveal">
+            <p class="hero-description">I BUILD<span>.</span> I EXPLORE<span>.</span><br>I CREATE<span>.</span></p>
+            <div class="hero-intro">A JavaScript enthusiast & digital explorer interested in automation, APIs, and the web.</div>
+          </div>
+          <div class="hero-actions reveal">
+            <a class="button button-light" href="#work">EXPLORE WORK <span>↗</span></a>
+            <a class="text-link" href="#about">DISCOVER MORE <span>↓</span></a>
+          </div>
+          <div class="social-strip reveal" aria-label="Social media" hidden></div>
         </div>
-
-        <!-- Color Palette Controller & Audio Switcher -->
-        <div class="flex items-center gap-4">
-            <button onclick="toggleMusic()" id="music-btn" class="glass-card w-8 h-8 rounded-full flex items-center justify-center text-xs text-slate-300 hover:text-white" title="Mute/Unmute Music">
-                <i class="fa-solid fa-volume-xmark" id="music-icon"></i>
-            </button>
-            <div class="flex items-center gap-1.5 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-full shadow-inner">
-                <button onclick="setGlobalTheme('#00eaff', 'rgba(0,234,255,0.4)')" class="w-3.5 h-3.5 rounded-full bg-cyan-400 cursor-pointer" title="Cyan"></button>
-                <button onclick="setGlobalTheme('#ef4444', 'rgba(239,68,68,0.4)')" class="w-3.5 h-3.5 rounded-full bg-red-500 cursor-pointer" title="Red"></button>
-                <button onclick="setGlobalTheme('#f97316', 'rgba(249,115,22,0.4)')" class="w-3.5 h-3.5 rounded-full bg-orange-500 cursor-pointer" title="Orange"></button>
-                <button onclick="setGlobalTheme('#22c55e', 'rgba(34,197,94,0.4)')" class="w-3.5 h-3.5 rounded-full bg-green-500 cursor-pointer" title="Green"></button>
-                <button onclick="setGlobalTheme('#a855f7', 'rgba(168,85,247,0.4)')" class="w-3.5 h-3.5 rounded-full bg-purple-500 cursor-pointer" title="Purple"></button>
-                <button onclick="setGlobalTheme('#ffffff', 'rgba(255,255,255,0.2)')" class="w-3.5 h-3.5 rounded-full bg-slate-400 cursor-pointer" title="Silver"></button>
+        <div class="hero-art reveal">
+          <div class="art-top"><span>FIG. 001 / NIGHT CITY</span><span>EST. 2021/22—∞</span></div>
+          <div class="city-scene" aria-label="Animated monochrome pixel city">
+            <div class="moon"></div><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+            <div class="stars"></div>
+            <div class="city city-back">
+              <i style="--h:38%;--x:3%;--w:8%"></i><i style="--h:56%;--x:14%;--w:10%"></i><i style="--h:43%;--x:28%;--w:8%"></i><i style="--h:68%;--x:40%;--w:9%"></i><i style="--h:48%;--x:54%;--w:10%"></i><i style="--h:60%;--x:69%;--w:9%"></i><i style="--h:39%;--x:83%;--w:12%"></i>
             </div>
+            <div class="city city-front">
+              <i style="--h:30%;--x:0%;--w:12%"></i><i style="--h:46%;--x:12%;--w:13%"></i><i style="--h:36%;--x:27%;--w:10%"></i><i style="--h:58%;--x:39%;--w:14%"></i><i style="--h:41%;--x:55%;--w:12%"></i><i style="--h:51%;--x:69%;--w:13%"></i><i style="--h:34%;--x:84%;--w:16%"></i>
+            </div>
+            <div class="pixel-satellite"><span></span></div>
+            <div class="scene-caption"><span>SECTOR 07</span><span>NO SIGNAL / JUST VIBES</span></div>
+          </div>
+          <div class="art-bottom"><span>ATMOSPHERE // MONOCHROME</span><span class="blink">● REC</span></div>
         </div>
-    </header>
+      </div>
+      <div class="hero-footer"><span>SCROLL TO ENTER</span><span class="scroll-indicator">↓</span><span>LAT 06° / LONG 110° — INDONESIA</span></div>
+    </section>
 
-    <!-- MAIN PORTFOLIO LAYOUT GRID -->
-    <main class="w-full max-w-5xl mx-auto px-4 mt-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-        
-        <!-- LEFT PROFILE FRAMEWORK (5 COLS) -->
-        <div class="md:col-span-5 flex flex-col gap-6">
-            
-            <!-- Hero Card Profile -->
-            <div class="glass-card rounded-3xl p-6 text-center flex flex-col items-center relative overflow-hidden reveal-node" id="node-avatar">
-                <!-- Profile Picture Grid -->
-                <div class="w-28 h-28 rounded-full border-2 border-primary-custom p-1 relative mb-4">
-                    <img id="gh-avatar" src="assets/avatar.png" alt="Avatar" class="w-full h-full object-cover rounded-full">
-                </div>
-                
-                <!-- Identity Base Info -->
-                <h1 id="user-title" class="text-2xl font-black tracking-tight">Zansky</h1>
-                <p class="text-xs font-medium text-slate-400 mt-1">
-                    I am <span id="typing-hook" class="text-primary-custom font-semibold typing-cursor"></span>
-                </p>
-
-                <hr class="w-full border-slate-800/60 my-4">
-
-                <!-- Meta Specs Bundle -->
-                <div class="w-full text-left space-y-2.5 text-xs text-slate-300 px-2">
-                    <div class="flex items-center gap-3"><i class="fa-solid fa-cake-candles text-primary-custom"></i> <span>Umur : 19 Tahun</span></div>
-                    <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-primary-custom"></i> <span>Indonesia</span></div>
-                    <div class="flex items-center gap-3"><i class="fa-solid fa-eye text-primary-custom"></i> <span>Visitors : <span id="visitor-val" class="font-mono font-bold text-white">Loading...</span></span></div>
-                </div>
-
-                <hr class="w-full border-slate-800/60 my-4">
-
-                <!-- Quotes Box -->
-                <div class="w-full bg-slate-950/40 border border-slate-800/40 rounded-xl p-3 text-xs italic text-slate-400 text-left relative">
-                    <i class="fa-solid fa-quote-left text-primary-custom text-[10px] absolute top-2 left-2 opacity-50"></i>
-                    <p class="pl-4 pr-2" id="quote-box">"Keep learning because technology never stops evolving."</p>
-                </div>
+    <section class="section about-section" id="about" data-section="01">
+      <div class="section-heading reveal"><span class="section-index">01 / IDENTITY</span><span class="section-rule"></span><span class="section-note">A LITTLE ABOUT ME</span></div>
+      <div class="about-layout">
+        <div class="about-title reveal"><p class="micro-label">WHO IS BEHIND THE SCREEN?</p><h2>NOT JUST<br><em>ANOTHER</em><br>PIXEL.</h2><div class="ascii-face" aria-hidden="true">┌─────────┐<br>│ ◉     ◉ │<br>│    ▱    │<br>│  ╲___╱  │<br>└─────────┘</div></div>
+        <div class="about-content reveal"><div class="about-number">[ 001 — PROFILE ]</div><p class="about-lead">Hello, I'm <strong>ZanSky</strong> — a JavaScript enthusiast and digital explorer from Indonesia.</p><p class="body-copy">Saya menyukai dunia Web Development, WhatsApp Bot, API, dan UI Design. Saya senang mengeksplorasi ide, membangun sesuatu dari nol, dan terus belajar melalui eksperimen serta proyek-proyek kecil.</p><p class="body-copy">Bagi saya, proses membuat sesuatu sama menariknya dengan hasil akhirnya. Selalu ada hal baru untuk dipelajari.</p><div class="profile-data"><div><span>BASED IN</span><b>INDONESIA</b></div><div><span>FOCUS</span><b>JAVASCRIPT / WEB</b></div><div><span>CURRENT MODE</span><b><i class="live-dot"></i> LEARNING</b></div></div><div class="quote">“Keep learning because technology never stops evolving.”</div>
+          <div class="background-panel">
+            <div class="background-heading"><span>002 — BEYOND THE SCREEN</span><span>PERSONALITY / INTERESTS</span></div>
+            <div class="background-grid">
+              <article><small>EDUCATION</small><b>HIGH SCHOOL · SOCIAL SCIENCE</b><p>Lulusan SMA sederajat jurusan Ilmu Pengetahuan Sosial (IPS). Saat ini terus mengeksplorasi hal-hal baru secara mandiri.</p></article>
+              <article><small>LANGUAGES</small><b>INDONESIAN / JAVANESE</b><p>Bahasa Indonesia, Jawa (ngoko), dan sedikit Bahasa Inggris. Masih terbuka untuk terus belajar.</p></article>
+              <article><small>PERSONALITY</small><b>A GOOD LISTENER</b><p>Saya cenderung jadi pendengar yang baik dan cukup mudah mengalah demi menjaga suasana. Mood kadang berubah—ada saatnya ramai, ada saatnya lebih memilih tenang.</p></article>
+              <article><small>MY PRINCIPLES</small><b>HONESTY OVER PRETENDING</b><p>Saya terbuka berteman dengan siapa saja. Buat saya, kejujuran dan ketulusan lebih penting daripada pencitraan atau sikap yang dibuat-buat.</p></article>
+              <article class="gaming-card"><small>OFF-SCREEN HOBBY</small><b>GEOMETRY DASH</b><p>Saat tidak sedang ngulik kode, biasanya saya menikmati game rhythm-platformer ini. Timing, fokus, dan kesabaran jadi bagian dari keseruannya.</p><div class="gd-scene" role="img" aria-label="Animasi orisinal bergaya game platform geometri: kubus melompat melewati rintangan"><span class="gd-ground"></span><span class="gd-cube"></span><i class="gd-spike spike-one"></i><i class="gd-spike spike-two"></i><span class="gd-label">JUMP · RETRY · REPEAT</span></div></article>
+              <article class="birthday-card"><small>BIRTHDAY / NEXT CELEBRATION</small><b>31 JULY 2007 · JAKARTA</b><p id="birthday-countdown" aria-live="polite">Menghitung ulang tahun berikutnya...</p></article>
             </div>
+          </div></div>
+      </div>
+    </section>
 
-            <!-- About Me Panel -->
-            <div class="glass-card rounded-3xl p-6 reveal-node" id="node-about">
-                <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-user text-primary-custom"></i> About Me
-                </h3>
-                <p id="gh-bio" class="text-xs text-slate-300 leading-relaxed">
-                    Saya merupakan seorang JavaScript Developer yang menyukai dunia Web Development, WhatsApp Bot, API dan UI Design.
-                </p>
-            </div>
+    <section class="section work-section" id="work" data-section="02">
+      <div class="section-heading reveal"><span class="section-index">02 / SELECTED WORKS</span><span class="section-rule"></span><span class="section-note">THINGS I'VE BUILT</span></div>
+      <div class="work-intro reveal"><h2>MADE IN<br><em>THE DARK.</em></h2><p>A selection of experiments, tools, and projects from my digital workspace.</p></div>
+      <div class="project-list" id="project-list">
+        <a class="project-row reveal" href="https://github.com/myname31" target="_blank" rel="noreferrer"><div class="project-id">PRJ. 001</div><div class="project-main"><h3>WhatsApp Automation</h3><p>Bot development, message automation, and useful chat-based tools.</p><div class="project-tags"><span>NODE.JS</span><span>BAILEYS</span><span>AUTOMATION</span></div></div><div class="project-visual visual-bot"><span class="visual-symbol">⌘</span><span class="visual-label">CHAT / SYSTEM</span></div><span class="project-arrow">↗</span></a>
+        <a class="project-row reveal" href="https://github.com/myname31" target="_blank" rel="noreferrer"><div class="project-id">PRJ. 002</div><div class="project-main"><h3>Centralized REST API</h3><p>Endpoint orchestration and lightweight services built with JavaScript.</p><div class="project-tags"><span>EXPRESS</span><span>REST API</span><span>NODE.JS</span></div></div><div class="project-visual visual-api"><span class="api-bracket">{ }</span><span class="visual-label">REQUEST / RESPONSE</span></div><span class="project-arrow">↗</span></a>
+        <a class="project-row reveal" href="https://github.com/myname31/lyrics" target="_blank" rel="noreferrer"><div class="project-id">PRJ. 003</div><div class="project-main"><h3>Lyrics Repository</h3><p>A focused collection and project for working with song lyrics data.</p><div class="project-tags"><span>JAVASCRIPT</span><span>OPEN SOURCE</span></div></div><div class="project-visual visual-lyrics"><span class="wave">▁▃▅▂▆▃▇▂</span><span class="visual-label">DATA / LYRICS</span></div><span class="project-arrow">↗</span></a>
+      </div>
+      <p class="edit-hint">PROJECTS ARE EDITABLE IN <code>script.js</code> — ADD YOUR NEXT EXPERIMENT THERE.</p>
+    </section>
 
-            <!-- Technical Skills Matrix -->
-            <div class="glass-card rounded-3xl p-6 reveal-node">
-                <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-code text-primary-custom"></i> Core Skills
-                </h3>
-                <div class="space-y-3.5">
-                    <!-- Skill Progress bars -->
-                    <div>
-                        <div class="flex justify-between text-xs font-semibold mb-1"><span>JavaScript</span><span>95%</span></div>
-                        <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-primary-custom" style="width: 95%"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between text-xs font-semibold mb-1"><span>HTML</span><span>80%</span></div>
-                        <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-primary-custom" style="width: 80%"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between text-xs font-semibold mb-1"><span>CSS</span><span>70%</span></div>
-                        <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-primary-custom" style="width: 70%"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between text-xs font-semibold mb-1"><span>NodeJS</span><span>90%</span></div>
-                        <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden"><div class="h-full bg-primary-custom" style="width: 90%"></div></div>
-                    </div>
-                </div>
-            </div>
+    <section class="section stack-section" id="stack" data-section="03">
+      <div class="section-heading reveal"><span class="section-index">03 / ARSENAL</span><span class="section-rule"></span><span class="section-note">TOOLS OF THE TRADE</span></div>
+      <div class="stack-layout"><div class="stack-copy reveal"><p class="micro-label">CURRENT TOOLKIT</p><h2>CODE IS<br><em>MY MEDIUM.</em></h2><p class="body-copy">Teknologi yang sering saya gunakan untuk membangun, bereksperimen, dan menyelesaikan ide.</p></div><div class="skill-grid reveal" id="skill-grid">
+        <div class="skill"><span>01</span><b>JavaScript</b><small>OFTEN USED / CONTINUOUSLY LEARNING</small><div class="skill-track"><i style="--level:62%"></i></div></div>
+        <div class="skill"><span>02</span><b>Node.js</b><small>USED IN PERSONAL PROJECTS</small><div class="skill-track"><i style="--level:55%"></i></div></div>
+        <div class="skill skill-basic"><span>03</span><b>HTML</b><small>FUNDAMENTALS</small><div class="skill-track"><i style="--level:22%"></i></div></div>
+        <div class="skill skill-basic"><span>04</span><b>CSS</b><small>FUNDAMENTALS</small><div class="skill-track"><i style="--level:18%"></i></div></div>
+      </div></div>
+      <div class="ticker" aria-hidden="true"><div>JAVASCRIPT ✳ NODE.JS ✳ HTML ✳ CSS ✳ REST API ✳ OPEN SOURCE ✳ JAVASCRIPT ✳ NODE.JS ✳ HTML ✳ CSS ✳ REST API ✳ OPEN SOURCE ✳</div></div>
+    </section>
 
-        </div>
+    <section class="section github-section" id="github" data-section="04">
+      <div class="section-heading reveal"><span class="section-index">04 / ACTIVITY</span><span class="section-rule"></span><span class="section-note">OPEN SOURCE FOOTPRINT</span></div>
+      <div class="github-head reveal"><div><p class="micro-label">LIVE FROM GITHUB</p><h2>THE WORK<br><em>CONTINUES.</em></h2></div><a class="button button-outline" href="https://github.com/myname31" data-social-link="github" target="_blank" rel="noreferrer">VIEW GITHUB ↗</a></div>
+      <div class="stats-grid reveal" id="github-stats"><div class="stat"><span>PUBLIC REPOSITORIES</span><b data-stat="repos">—</b><small>REPOS</small></div><div class="stat"><span>FOLLOWERS</span><b data-stat="followers">—</b><small>PEOPLE</small></div><div class="stat"><span>FOLLOWING</span><b data-stat="following">—</b><small>ACCOUNTS</small></div><div class="stat"><span>ACCOUNT CREATED</span><b data-stat="created">—</b><small>YEAR</small></div></div>
+      <div class="github-foot"><span id="github-message">CONNECTING TO GITHUB API...</span><span>USER / MYNAME31</span></div>
+    </section>
 
-        <!-- RIGHT METRICS & CONTENT SHIELD (7 COLS) -->
-        <div class="md:col-span-7 flex flex-col gap-6">
-            
-            <!-- Live GitHub Statistics -->
-            <div class="glass-card rounded-3xl p-6 reveal-node" id="node-stats">
-                <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
-                    <i class="fa-brands fa-github text-primary-custom text-base"></i> GitHub Live Statistics
-                </h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-slate-950/40 border border-slate-800/40 rounded-2xl p-4 flex items-center gap-3.5">
-                        <div class="text-xl text-primary-custom"><i class="fa-regular fa-star"></i></div>
-                        <div><div class="text-xl font-bold tracking-tight" id="api-stars">...</div><div class="text-[11px] text-slate-400">Total Stars</div></div>
-                    </div>
-                    <div class="bg-slate-950/40 border border-slate-800/40 rounded-2xl p-4 flex items-center gap-3.5">
-                        <div class="text-xl text-primary-custom"><i class="fa-solid fa-box-archive"></i></div>
-                        <div><div class="text-xl font-bold tracking-tight" id="api-repos">...</div><div class="text-[11px] text-slate-400">Repositories</div></div>
-                    </div>
-                    <div class="bg-slate-950/40 border border-slate-800/40 rounded-2xl p-4 flex items-center gap-3.5">
-                        <div class="text-xl text-primary-custom"><i class="fa-solid fa-users"></i></div>
-                        <div><div class="text-xl font-bold tracking-tight" id="api-followers">...</div><div class="text-[11px] text-slate-400">Followers</div></div>
-                    </div>
-                    <div class="bg-slate-950/40 border border-slate-800/40 rounded-2xl p-4 flex items-center gap-3.5">
-                        <div class="text-xl text-primary-custom"><i class="fa-solid fa-user-plus"></i></div>
-                        <div><div class="text-xl font-bold tracking-tight" id="api-following">...</div><div class="text-[11px] text-slate-400">Following</div></div>
-                    </div>
-                </div>
+    <section class="section journey-section" id="journey" data-section="05">
+      <div class="section-heading reveal"><span class="section-index">05 / JOURNEY</span><span class="section-rule"></span><span class="section-note">A WORK IN PROGRESS</span></div>
+      <div class="journey-layout"><div class="journey-title reveal"><p class="micro-label">THE DEVELOPMENT LOG</p><h2>STILL<br><em>LOADING.</em></h2><p class="body-copy">Semuanya berawal dari rasa penasaran. Tidak langsung mahir, hanya mencoba, mencari tahu, lalu belajar sedikit demi sedikit.</p></div><div class="timeline">
+        <article class="timeline-item reveal"><span>2021 / 2022</span><div><b>THE CURIOSITY</b><p>Saat SMP, mulai tertarik dengan bot WhatsApp. Dari rasa penasaran, mulai mencari tahu bagaimana bot bekerja dan mencoba menjalankannya sendiri.</p></div><i></i></article>
+        <article class="timeline-item reveal"><span>2022 / 2023</span><div><b>LEARNING JAVASCRIPT</b><p>Karena bot yang dicoba menggunakan JavaScript, mulai belajar bahasa tersebut pelan-pelan agar lebih memahami cara kerja dan bisa mengembangkan bot sendiri.</p></div><i></i></article>
+        <article class="timeline-item reveal"><span>2023 / 2024</span><div><b>FIRST STEPS INTO THE WEB</b><p>Mulai mengeksplorasi REST API dan mencoba membuat tampilan web sederhana. Dari proses itu mulai mengenal HTML dan CSS, sebatas memahami dasar-dasarnya.</p></div><i></i></article>
+        <article class="timeline-item reveal"><span>2024 / 2025</span><div><b>MORE EXPERIMENTS</b><p>Melanjutkan eksplorasi JavaScript, Node.js, bot WhatsApp, dan REST API melalui proyek serta percobaan kecil.</p></div><i></i></article>
+        <article class="timeline-item timeline-now reveal"><span>2025 — NOW</span><div><b>STILL FIGURING THINGS OUT</b><p>Terus belajar, memperbaiki proyek yang sudah dibuat, dan mencoba hal baru satu per satu. Masih banyak yang ingin dipahami.</p></div><i></i></article>
+      </div></div>
+    </section>
 
-                <!-- Contribution Graph Node Idea -->
-                <div class="mt-4 p-3 bg-slate-950/20 border border-slate-800/30 rounded-xl flex flex-col items-center justify-center min-h-[70px]">
-                    <span class="text-[10px] uppercase text-slate-500 font-bold tracking-wider mb-2">Contribution Graph Shortcut</span>
-                    <a id="gh-graph-link" href="#" target="_blank">
-                        <img id="gh-graph-img" class="w-full max-h-[55px] object-contain filter invert opacity-80 hover:opacity-100 transition-opacity" src="" alt="Graph Loading...">
-                    </a>
-                </div>
-            </div>
+    <section class="section contact-section" id="contact" data-section="06">
+      <div class="contact-noise"></div>
+      <div class="section-heading reveal"><span class="section-index">06 / TRANSMISSION</span><span class="section-rule"></span><span class="section-note">END OF THE LINE</span></div>
+      <div class="contact-content reveal"><p class="micro-label">HAVE SOMETHING IN MIND?</p><h2>LET'S MAKE<br><em>IT REAL.</em></h2><p>Open to ideas, collaborations, and interesting conversations.</p><div class="contact-socials" aria-label="Social media links" hidden></div></div>
+      <div class="contact-bottom"><span>TRANSMISSION COMPLETE?</span><span>THANKS FOR VISITING.</span></div>
+    </section>
+  </main>
 
-            <!-- Project Showcase Container -->
-            <div class="glass-card rounded-3xl p-6 reveal-node">
-                <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-diagram-project text-primary-custom"></i> Featured Projects
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Project item 1 -->
-                    <div class="bg-slate-950/40 border border-slate-800/50 rounded-2xl overflow-hidden group">
-                        <div class="h-28 bg-slate-800 relative overflow-hidden">
-                            <img src="assets/images/project1.png" alt="Bot Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="p-3.5">
-                            <h4 class="font-bold text-xs text-white">WhatsApp Automation Bot</h4>
-                            <p class="text-[11px] text-slate-400 mt-1 line-clamp-2">High-performance custom modular bot using venom or wwebjs.</p>
-                        </div>
-                    </div>
-                    <!-- Project item 2 -->
-                    <div class="bg-slate-950/40 border border-slate-800/50 rounded-2xl overflow-hidden group">
-                        <div class="h-28 bg-slate-800 relative overflow-hidden">
-                            <img src="assets/images/project2.png" alt="API Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="p-3.5">
-                            <h4 class="font-bold text-xs text-white">Centralized Rest API</h4>
-                            <p class="text-[11px] text-slate-400 mt-1 line-clamp-2">Express endpoints orchestration with complete secure CORS authorization wrappers.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <footer class="footer"><a class="brand" href="#home">ZAN<span>/</span>SKY<sup>®</sup></a><span>DESIGNED IN THE AFTERDARK</span><span>© <span id="year"></span> ZANSKY. ALL RIGHTS RESERVED.</span></footer>
 
-            <!-- Milestones Timeline Journey -->
-            <div class="glass-card rounded-3xl p-6 reveal-node">
-                <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-timeline text-primary-custom"></i> Development History
-                </h3>
-                <div class="border-l-2 border-slate-800 ml-2.5 pl-5 space-y-5 relative">
-                    <div class="relative"><div class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-primary-custom shadow-[0_0_8px_var(--primary)]"></div><span class="text-[10px] font-mono bg-slate-900 border border-slate-800 px-2 py-0.5 rounded text-primary-custom font-bold">2023</span><p class="text-xs text-slate-300 mt-1 font-medium">Mulai Belajar Pondasi Dasar Web (HTML5 & CSS3)</p></div>
-                    <div class="relative"><div class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-primary-custom shadow-[0_0_8px_var(--primary)]"></div><span class="text-[10px] font-mono bg-slate-900 border border-slate-800 px-2 py-0.5 rounded text-primary-custom font-bold">2024</span><p class="text-xs text-slate-300 mt-1 font-medium">Eksplorasi Algoritma Asinkronus JavaScript (ES6+)</p></div>
-                    <div class="relative"><div class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-primary-custom shadow-[0_0_8px_var(--primary)]"></div><span class="text-[10px] font-mono bg-slate-900 border border-slate-800 px-2 py-0.5 rounded text-primary-custom font-bold">2025</span><p class="text-xs text-slate-300 mt-1 font-medium">Beralih ke Arsitektur Server-Side NodeJS & Database</p></div>
-                    <div class="relative"><div class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-primary-custom shadow-[0_0_8px_var(--primary)]"></div><span class="text-[10px] font-mono bg-slate-900 border border-slate-800 px-2 py-0.5 rounded text-primary-custom font-bold">2026</span><p class="text-xs text-slate-300 mt-1 font-medium">Berkontribusi ke Ekosistem Open Source</p></div>
-                </div>
-            </div>
-
-            <!-- Dynamic Social Media Hub -->
-            <div class="glass-card rounded-3xl p-5 reveal-node" id="node-social">
-                <div class="flex justify-center items-center flex-wrap gap-4" id="social-grid">
-                    <!-- Dinonaktifkan otomatis oleh JS jika value konfig kosong -->
-                </div>
-            </div>
-
-        </div>
-
-    </main>
-    
-    <!-- call js -->
-<script src="js/script.js"></script>
-
-    <!-- SYSTEM FOOTER -->
-    <footer class="w-full text-center mt-12 text-[11px] text-slate-500 tracking-wider">
-        <p>Made with <i class="fa-solid fa-heart text-rose-500 animate-pulse"></i> by <span class="text-white font-semibold">Zansky</span></p>
-        <p class="mt-1 opacity-60">&copy; 2026 All Rights Reserved.</p>
-    </footer>
-
-<div id="redirect-overlay">
-    <div class="redirect-box">
-        <div class="redirect-logo">
-            <i id="redirect-icon"></i>
-        </div>
-        <h2 id="redirect-title"></h2>
-        <p id="redirect-message"></p>
-        <div class="loader-bar">
-            <div class="loader-fill"></div>
-        </div>
+  <div class="music-control" id="music-control">
+    <audio id="backgroundMusic" src="assets/music/sound.mp3" preload="none" loop></audio>
+    <div class="music-player" id="music-player">
+      <div class="music-player-top">
+        <span class="music-bars" id="music-equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="music-copy"><b id="music-state">MUSIC OFF</b><small id="music-track-name">SOUND.MP3 · LOCAL TRACK</small></span>
+        <button class="music-toggle" id="music-toggle" type="button" aria-pressed="false" aria-label="Play background music">⏻</button>
+      </div>
+      <label class="music-volume" for="music-volume"><span>VOL</span><input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.35" aria-label="Music volume"><output id="music-volume-value" for="music-volume">35%</output></label>
     </div>
-</div>
+  </div>
 
+  <div class="terminal" id="terminal">
+    <button class="terminal-tab" id="terminal-toggle"><span class="terminal-indicator"></span> QUICK TERMINAL <span class="terminal-plus">+</span></button>
+    <div class="terminal-panel" id="terminal-panel" hidden>
+      <div class="terminal-head"><span>ZS://LOCAL_SHELL</span><button id="terminal-close" aria-label="Close terminal">×</button></div>
+      <div class="terminal-output" id="terminal-output"><p>AFTERDARK SHELL [VERSION 1.0]</p><p>Type <b>help</b> to see available commands.</p></div>
+      <form id="terminal-form"><label for="terminal-input">&gt;</label><input id="terminal-input" autocomplete="off" spellcheck="false" placeholder="type a command..."></form>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -157,14 +157,37 @@ function renderProjects() {
       <span class="project-arrow">↗</span>
     </a>`).join("");
 }
+function renderSkills() {
+  const grid = $("#skill-grid");
+  if (!grid || !Array.isArray(CONFIG.skills)) return;
+  grid.innerHTML = CONFIG.skills.map((s, i) => {
+    const level = Math.max(0, Math.min(100, Number(s.level) || 0));
+    const basicClass = level <= 30 ? " skill-basic" : "";
+    return `
+      <div class="skill${basicClass}">
+        <span>${String(i + 1).padStart(2, "0")}</span>
+        <div class="skill-head"><b>${escapeHTML(s.name)}</b><em class="skill-pct">${level}%</em></div>
+        <small>${escapeHTML(s.detail)}</small>
+        <div class="skill-track"><i style="--level:${level}%"></i></div>
+      </div>`;
+  }).join("");
+}
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 function terminal() {
   const panel = $("#terminal-panel"), toggle = $("#terminal-toggle"), close = $("#terminal-close");
   const form = $("#terminal-form"), input = $("#terminal-input"), output = $("#terminal-output");
-  const show = () => { panel.hidden = false; toggle.querySelector(".terminal-plus").textContent = "−"; };
-  const hide = () => { panel.hidden = true; toggle.querySelector(".terminal-plus").textContent = "+"; document.body.classList.remove("terminal-typing"); input.blur(); };
+  const show = () => {
+    panel.hidden = false;
+    toggle.querySelector(".terminal-plus").textContent = "−";
+  };
+  const hide = () => {
+    panel.hidden = true;
+    toggle.querySelector(".terminal-plus").textContent = "+";
+    document.body.classList.remove("terminal-typing");
+    input.blur();
+  };
   input?.addEventListener("focus", () => document.body.classList.add("terminal-typing"));
   input?.addEventListener("blur", () => document.body.classList.remove("terminal-typing"));
   toggle?.addEventListener("click", () => {
@@ -222,7 +245,7 @@ function birthdayClock() {
   setInterval(update, 1000);
 }
 
-// Local custom soundtrack. Place your own file at assets/music/sound.mp3.
+// Local custom soundtrack with Play (▷) / Pause (Ⅱ) symbols & collapsible corner tab.
 function ambientMusic() {
   const audio = $("#backgroundMusic");
   const button = $("#music-toggle");
@@ -230,6 +253,10 @@ function ambientMusic() {
   const volume = $("#music-volume");
   const volumeValue = $("#music-volume-value");
   const player = $("#music-player");
+  const hideBtn = $("#music-hide");
+  const showTab = $("#music-show");
+  const tabDot = $("#music-tab-dot");
+  const tabLabel = $("#music-tab-label");
   if (!audio || !button || !state || !volume || !player) return;
 
   audio.volume = Number(volume.value || 0.35);
@@ -238,9 +265,22 @@ function ambientMusic() {
   const setPlayingUI = (playing) => {
     button.setAttribute("aria-pressed", String(playing));
     button.setAttribute("aria-label", playing ? "Pause background music" : "Play background music");
+    button.textContent = playing ? "Ⅱ" : "▷";
     state.textContent = playing ? "MUSIC ON" : "MUSIC OFF";
     player.classList.toggle("is-playing", playing);
+    tabDot?.classList.toggle("is-playing", playing);
+    if (tabLabel) tabLabel.textContent = playing ? "AUDIO ON" : "AUDIO";
   };
+
+  hideBtn?.addEventListener("click", () => {
+    player.hidden = true;
+    if (showTab) showTab.hidden = false;
+  });
+
+  showTab?.addEventListener("click", () => {
+    player.hidden = false;
+    showTab.hidden = true;
+  });
 
   button.addEventListener("click", async () => {
     if (!audio.paused) {
@@ -334,6 +374,7 @@ function configureSocialLinks() {
 startBoot();
 clock();
 configureSocialLinks();
+renderSkills();
 revealOnScroll();
 navigation();
 pixelRain();

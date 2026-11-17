@@ -157,37 +157,28 @@ function renderProjects() {
       <span class="project-arrow">↗</span>
     </a>`).join("");
 }
-function renderSkills() {
-  const grid = $("#skill-grid");
-  if (!grid || !Array.isArray(CONFIG.skills)) return;
-  grid.innerHTML = CONFIG.skills.map((s, i) => {
-    const level = Math.max(0, Math.min(100, Number(s.level) || 0));
-    const basicClass = level <= 30 ? " skill-basic" : "";
-    return `
-      <div class="skill${basicClass}">
-        <span>${String(i + 1).padStart(2, "0")}</span>
-        <div class="skill-head"><b>${escapeHTML(s.name)}</b><em class="skill-pct">${level}%</em></div>
-        <small>${escapeHTML(s.detail)}</small>
-        <div class="skill-track"><i style="--level:${level}%"></i></div>
-      </div>`;
-  }).join("");
-}
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 function terminal() {
   const panel = $("#terminal-panel"), toggle = $("#terminal-toggle"), close = $("#terminal-close");
   const form = $("#terminal-form"), input = $("#terminal-input"), output = $("#terminal-output");
-  const show = () => {
-    panel.hidden = false;
-    toggle.querySelector(".terminal-plus").textContent = "−";
-  };
-  const hide = () => {
-    panel.hidden = true;
-    toggle.querySelector(".terminal-plus").textContent = "+";
-    document.body.classList.remove("terminal-typing");
-    input.blur();
-  };
+  const terminalBox = $("#terminal"), terminalPeek = $("#terminal-peek");
+  const show = () => { panel.hidden = false; toggle.querySelector(".terminal-plus").textContent = "−"; };
+  const hide = () => { panel.hidden = true; toggle.querySelector(".terminal-plus").textContent = "+"; document.body.classList.remove("terminal-typing"); input.blur(); };
+  terminalPeek?.addEventListener("click", () => {
+    terminalBox.classList.remove("is-minimized");
+    terminalPeek.setAttribute("aria-expanded", "true");
+    terminalPeek.setAttribute("aria-label", "Hide quick terminal");
+  });
+  // Double-tap the terminal heading's indicator area to tuck the whole widget away.
+  toggle?.addEventListener("contextmenu", event => {
+    event.preventDefault();
+    hide();
+    terminalBox.classList.add("is-minimized");
+    terminalPeek?.setAttribute("aria-expanded", "false");
+    terminalPeek?.setAttribute("aria-label", "Show quick terminal");
+  });
   input?.addEventListener("focus", () => document.body.classList.add("terminal-typing"));
   input?.addEventListener("blur", () => document.body.classList.remove("terminal-typing"));
   toggle?.addEventListener("click", () => {
@@ -196,6 +187,12 @@ function terminal() {
     else { hide(); }
   });
   close?.addEventListener("click", hide);
+  $("#terminal-minimize")?.addEventListener("click", () => {
+    hide();
+    terminalBox.classList.add("is-minimized");
+    terminalPeek?.setAttribute("aria-expanded", "false");
+    terminalPeek?.setAttribute("aria-label", "Show quick terminal");
+  });
   input?.addEventListener("keydown", e => { if (e.key === "Escape") { hide(); } });
   const commands = {
     help: "AVAILABLE: help, about, projects, github, contact, clear, date",
@@ -245,7 +242,7 @@ function birthdayClock() {
   setInterval(update, 1000);
 }
 
-// Local custom soundtrack with Play (▷) / Pause (Ⅱ) symbols & collapsible corner tab.
+// Local custom soundtrack. Place your own file at assets/music/sound.mp3.
 function ambientMusic() {
   const audio = $("#backgroundMusic");
   const button = $("#music-toggle");
@@ -253,10 +250,6 @@ function ambientMusic() {
   const volume = $("#music-volume");
   const volumeValue = $("#music-volume-value");
   const player = $("#music-player");
-  const hideBtn = $("#music-hide");
-  const showTab = $("#music-show");
-  const tabDot = $("#music-tab-dot");
-  const tabLabel = $("#music-tab-label");
   if (!audio || !button || !state || !volume || !player) return;
 
   audio.volume = Number(volume.value || 0.35);
@@ -268,19 +261,7 @@ function ambientMusic() {
     button.textContent = playing ? "Ⅱ" : "▷";
     state.textContent = playing ? "MUSIC ON" : "MUSIC OFF";
     player.classList.toggle("is-playing", playing);
-    tabDot?.classList.toggle("is-playing", playing);
-    if (tabLabel) tabLabel.textContent = playing ? "AUDIO ON" : "AUDIO";
   };
-
-  hideBtn?.addEventListener("click", () => {
-    player.hidden = true;
-    if (showTab) showTab.hidden = false;
-  });
-
-  showTab?.addEventListener("click", () => {
-    player.hidden = false;
-    showTab.hidden = true;
-  });
 
   button.addEventListener("click", async () => {
     if (!audio.paused) {
@@ -313,6 +294,22 @@ function ambientMusic() {
     if (state.textContent === "LOADING...") state.textContent = "ADD SOUND.MP3";
     setPlayingUI(false);
   });
+
+  const musicControl = $("#music-control");
+  const musicPeek = $("#music-peek");
+  const musicMinimize = $("#music-minimize");
+  const minimizeMusic = () => {
+    musicControl.classList.add("is-minimized");
+    musicPeek?.setAttribute("aria-expanded", "false");
+    musicPeek?.setAttribute("aria-label", "Show music player");
+  };
+  musicMinimize?.addEventListener("click", minimizeMusic);
+  musicPeek?.addEventListener("click", () => {
+    const minimized = musicControl.classList.toggle("is-minimized");
+    musicPeek.setAttribute("aria-expanded", String(!minimized));
+    musicPeek.setAttribute("aria-label", minimized ? "Show music player" : "Hide music player");
+  });
+
   setPlayingUI(false);
 }
 
@@ -374,7 +371,6 @@ function configureSocialLinks() {
 startBoot();
 clock();
 configureSocialLinks();
-renderSkills();
 revealOnScroll();
 navigation();
 pixelRain();

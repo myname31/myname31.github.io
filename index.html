@@ -4,7 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101114">
-  <meta name="description" content="ZanSky — developer, creator, and digital explorer.">
+  <meta name="description" content="ZanSky — personal portfolio. Learning, programming, and building things on the web.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ZanSky">
+  <meta property="og:title" content="ZanSky® — AFTERDARK">
+  <meta property="og:description" content="Learning | Programming. A personal space for code, experiments, and digital creations.">
+  <meta property="og:url" content="https://www.alxyz.zone.id/">
+  <meta property="og:image" content="https://www.alxyz.zone.id/assets/og-cover.png">
+  <meta property="og:image:secure_url" content="https://www.alxyz.zone.id/assets/og-cover.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ZanSky AFTERDARK — Learning | Programming">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZanSky® — AFTERDARK">
+  <meta name="twitter:description" content="Learning | Programming. A personal space for code, experiments, and digital creations.">
+  <meta name="twitter:image" content="https://www.alxyz.zone.id/assets/og-cover.png">
+  <link rel="canonical" href="https://www.alxyz.zone.id/">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <title>ZanSky® — AFTERDARK</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,39 +132,12 @@
 
     <section class="section stack-section" id="stack" data-section="03">
       <div class="section-heading reveal"><span class="section-index">03 / ARSENAL</span><span class="section-rule"></span><span class="section-note">TOOLS OF THE TRADE</span></div>
-      <div class="stack-layout">
-        <div class="stack-copy reveal">
-          <p class="micro-label">CURRENT TOOLKIT</p>
-          <h2>CODE IS<br><em>MY MEDIUM.</em></h2>
-          <p class="body-copy">Teknologi yang sering saya gunakan untuk membangun, bereksperimen, dan menyelesaikan ide.</p>
-        </div>
-        <div class="skill-grid reveal" id="skill-grid">
-          <div class="skill">
-            <span>01</span>
-            <div class="skill-head"><b>JavaScript</b><em class="skill-pct">62%</em></div>
-            <small>OFTEN USED / CONTINUOUSLY LEARNING</small>
-            <div class="skill-track"><i style="--level:62%"></i></div>
-          </div>
-          <div class="skill">
-            <span>02</span>
-            <div class="skill-head"><b>Node.js</b><em class="skill-pct">55%</em></div>
-            <small>USED IN PERSONAL PROJECTS</small>
-            <div class="skill-track"><i style="--level:55%"></i></div>
-          </div>
-          <div class="skill skill-basic">
-            <span>03</span>
-            <div class="skill-head"><b>HTML</b><em class="skill-pct">22%</em></div>
-            <small>FUNDAMENTALS</small>
-            <div class="skill-track"><i style="--level:22%"></i></div>
-          </div>
-          <div class="skill skill-basic">
-            <span>04</span>
-            <div class="skill-head"><b>CSS</b><em class="skill-pct">18%</em></div>
-            <small>FUNDAMENTALS</small>
-            <div class="skill-track"><i style="--level:18%"></i></div>
-          </div>
-        </div>
-      </div>
+      <div class="stack-layout"><div class="stack-copy reveal"><p class="micro-label">CURRENT TOOLKIT</p><h2>CODE IS<br><em>MY MEDIUM.</em></h2><p class="body-copy">Teknologi yang sering saya gunakan untuk membangun, bereksperimen, dan menyelesaikan ide.</p></div><div class="skill-grid reveal" id="skill-grid">
+        <div class="skill"><span>01</span><b>JavaScript</b><strong class="skill-percent">62%</strong><small>OFTEN USED / CONTINUOUSLY LEARNING</small><div class="skill-track"><i style="--level:62%"></i></div></div>
+        <div class="skill"><span>02</span><b>Node.js</b><strong class="skill-percent">55%</strong><small>USED IN PERSONAL PROJECTS</small><div class="skill-track"><i style="--level:55%"></i></div></div>
+        <div class="skill skill-basic"><span>03</span><b>HTML</b><strong class="skill-percent">22%</strong><small>FUNDAMENTALS</small><div class="skill-track"><i style="--level:22%"></i></div></div>
+        <div class="skill skill-basic"><span>04</span><b>CSS</b><strong class="skill-percent">18%</strong><small>FUNDAMENTALS</small><div class="skill-track"><i style="--level:18%"></i></div></div>
+      </div></div>
       <div class="ticker" aria-hidden="true"><div>JAVASCRIPT ✳ NODE.JS ✳ HTML ✳ CSS ✳ REST API ✳ OPEN SOURCE ✳ JAVASCRIPT ✳ NODE.JS ✳ HTML ✳ CSS ✳ REST API ✳ OPEN SOURCE ✳</div></div>
     </section>
 
@@ -180,32 +170,24 @@
   <footer class="footer"><a class="brand" href="#home">ZAN<span>/</span>SKY<sup>®</sup></a><span>DESIGNED IN THE AFTERDARK</span><span>© <span id="year"></span> ZANSKY. ALL RIGHTS RESERVED.</span></footer>
 
   <div class="music-control" id="music-control">
+    <button class="widget-peek music-peek" id="music-peek" type="button" aria-expanded="true" aria-label="Show music player">♫</button>
     <audio id="backgroundMusic" src="assets/music/sound.mp3" preload="none" loop></audio>
     <div class="music-player" id="music-player">
-      <div class="music-head">
-        <span>ZS://AUDIO_DECK</span>
-        <button class="music-min-btn" id="music-hide" type="button" aria-label="Sembunyikan pemutar musik">−</button>
+      <div class="music-player-top">
+        <span class="music-bars" id="music-equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="music-copy"><b id="music-state">MUSIC OFF</b><small id="music-track-name">SOUND.MP3 · LOCAL TRACK</small></span>
+        <button class="music-minimize" id="music-minimize" type="button" aria-label="Minimize music player">−</button>
+        <button class="music-toggle" id="music-toggle" type="button" aria-pressed="false" aria-label="Play background music">▷</button>
       </div>
-      <div class="music-body">
-        <div class="music-player-top">
-          <span class="music-bars" id="music-equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          <span class="music-copy"><b id="music-state">MUSIC OFF</b><small id="music-track-name">SOUND.MP3 · LOCAL TRACK</small></span>
-          <button class="music-toggle" id="music-toggle" type="button" aria-pressed="false" aria-label="Play background music">▷</button>
-        </div>
-        <label class="music-volume" for="music-volume"><span>VOL</span><input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.35" aria-label="Music volume"><output id="music-volume-value" for="music-volume">35%</output></label>
-      </div>
+      <label class="music-volume" for="music-volume"><span>VOL</span><input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.35" aria-label="Music volume"><output id="music-volume-value" for="music-volume">35%</output></label>
     </div>
-    <button class="music-tab" id="music-show" type="button" hidden>
-      <span class="music-tab-dot" id="music-tab-dot"></span>
-      <span id="music-tab-label">AUDIO</span>
-      <span class="music-tab-plus">+</span>
-    </button>
   </div>
 
   <div class="terminal" id="terminal">
-    <button class="terminal-tab" id="terminal-toggle" type="button"><span class="terminal-indicator"></span> QUICK TERMINAL <span class="terminal-plus">+</span></button>
+    <button class="widget-peek terminal-peek" id="terminal-peek" type="button" aria-expanded="true" aria-label="Show quick terminal">&gt;_</button>
+    <button class="terminal-tab" id="terminal-toggle"><span class="terminal-indicator"></span> QUICK TERMINAL <span class="terminal-plus">+</span></button>
     <div class="terminal-panel" id="terminal-panel" hidden>
-      <div class="terminal-head"><span>ZS://LOCAL_SHELL</span><button id="terminal-close" type="button" aria-label="Sembunyikan terminal">−</button></div>
+      <div class="terminal-head"><span>ZS://LOCAL_SHELL</span><div class="terminal-head-actions"><button id="terminal-minimize" aria-label="Minimize terminal">−</button><button id="terminal-close" aria-label="Close terminal">×</button></div></div>
       <div class="terminal-output" id="terminal-output"><p>AFTERDARK SHELL [VERSION 1.0]</p><p>Type <b>help</b> to see available commands.</p></div>
       <form id="terminal-form"><label for="terminal-input">&gt;</label><input id="terminal-input" autocomplete="off" spellcheck="false" placeholder="type a command..."></form>
     </div>

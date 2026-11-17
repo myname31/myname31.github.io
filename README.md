@@ -58,3 +58,17 @@ The player includes play/pause, a volume slider, a track label, and an animated 
 - GitHub statistics use the public GitHub Users API and may be rate-limited.
 - Google Fonts are loaded remotely; system fallbacks are included.
 - The pixel city is CSS artwork and does not require a large external GIF or video.
+
+
+## Social preview (WhatsApp / sharing link)
+
+The Open Graph preview image is `assets/og-cover.png` (1200 × 630). The page metadata points to:
+`https://www.alxyz.zone.id/assets/og-cover.png`
+
+If the preview does not update immediately in WhatsApp, allow time for its cache to refresh. The preview image must be publicly accessible over HTTPS.
+
+## Floating widgets
+
+- The music widget can be minimized to a small `♫` tab in the bottom-left corner.
+- The Quick Terminal can be minimized with the `−` control in its panel header; it returns as a compact `>_` tab.
+- Music uses `assets/music/sound.mp3`. Keep the filename and folder path exact.

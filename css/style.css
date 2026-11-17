@@ -110,31 +110,8 @@ main{position:relative;z-index:1;margin-left:var(--rail)}.section{position:relat
 .skill b{grid-column:2;grid-row:1}
 .skill .skill-percent{grid-column:3;grid-row:1;color:#e2e5eb;font:600 10px var(--mono);letter-spacing:.5px}
 .skill small{grid-column:2/-1;grid-row:2}
-
-.skill-track {
-  direction: ltr;
-  display: block;
-  width: 100%;
-  height: 3px;
-  overflow: hidden;
-  background: #454a55;
-}
-
-.skill-track i {
-  display: block;
-  height: 100%;
-  width: var(--level);
-  margin: 0 auto 0 0;
-  background: #e1e4eb !important;
-  transform: none !important;
-  transform-origin: left;
-  animation: none !important;
-}
-
-/*
 .skill-track{grid-column:1/-1;grid-row:3;height:3px;margin-top:8px;background:#454a55;overflow:hidden}
 .skill-track i{width:var(--level);min-width:2px;background:#e1e4eb;box-shadow:0 0 7px #dfe3ed44}
-*/
 @media(max-width:760px){.skill .skill-percent{font-size:9px}.skill-track{height:3px}}
 
 /* Floating music and terminal panels can be tucked into small corner tabs. */
